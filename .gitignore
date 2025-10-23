@@ -44,6 +44,8 @@ build
 tmp*.txt
 
 # Ignore stuff in KataGo*
+engines
+
 engines/KataGo*/cpp/write
 engines/KataGo*/cpp/runtests
 engines/KataGo*/cpp/example

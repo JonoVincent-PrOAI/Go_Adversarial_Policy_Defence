@@ -10,3 +10,6 @@
 [submodule "engines/KataGo-tensorflow"]
 	path = engines/KataGo-tensorflow
 	url = https://github.com/AlignmentResearch/KataGo-custom.git
+[submodule "KataGo"]
+	path = KataGo
+	url = https://github.com/lightvector/KataGo
