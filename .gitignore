@@ -109,3 +109,6 @@ controllers/gogui-1.5.1/gogui*.exe
 
 # For macOS
 .DS_Store
+
+detection_dataset/
+models/
