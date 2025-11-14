@@ -61,7 +61,7 @@ setup(
     extras_require={
         # recommended packages for development
         "dev": [
-            "docker-compose",
+            #"docker-compose",
             "gpustat",
             "ipywidgets",
             "jupyterlab",

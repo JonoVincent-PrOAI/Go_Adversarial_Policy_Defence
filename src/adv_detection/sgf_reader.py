@@ -19,7 +19,7 @@ class SGFReader:
     function(list[str]) -> list[list[str]]
     Converts the list of moves extracted from SGF into an array of players and move co-ords
     """
-    def parse_moves(moves : list[str]):
+    def parse_moves(moves):
         parsed_move = []
         for move in moves:
             if move != '':

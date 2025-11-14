@@ -25,8 +25,8 @@ class Probe():
     probe_header = ['probe model','game id','move number','black name','white name','black model', 'white model', 'adversarial', 'attack type', 'result', 
         'file path', 'layer outputs']
 
-    non_adv_matchups = [['base-adv', 'may23-vic'],['base-adv', 'dec23'],['base-adv', 'may24'],['base-adv','v9'],
-                        ['base-adv', 'ViT-Vic'],['cont','may24']]
+    # non_adv_matchups = [['base-adv', 'may23-vic'],['base-adv', 'dec23'],['base-adv', 'may24'],['base-adv','v9'],
+    #                     ['base-adv', 'ViT-Vic'],['cont','may24']]
 
     #name of hidden files in the data whicih need to be ignored when iterating over the directory
     cursed_files = ['.DS_Store', 'game.dat']

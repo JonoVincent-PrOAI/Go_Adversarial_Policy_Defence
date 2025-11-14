@@ -39,12 +39,16 @@ class Defended_Model():
         self.kata_subprocess = Kata_GTP_Subprocess('GoAD-kata', model_path, config)
 
         self.det_model_pred = []
-        self.num_stored = switch_threshold[1]
-        self.threshold = switch_threshold[0]
+        
+        self.num_stored = switch_threshold['cluster size']
+        self.threshold = switch_threshold['detection threshold']
+        self.cluster_threshold = switch_threshold['num clusters']
+        self.num_clusters = 0
+        
         self.delay = accurate_window[0]
         self.end_point = accurate_window[1]
 
-        self.switch_point = None
+        self.switch_point = []
 
         self.active_GTP = self.kata_subprocess
         self.inactive_GTP = self.GNU_subprocess
@@ -83,13 +87,16 @@ class Defended_Model():
         if self.num_moves > self.delay:
             if self.num_moves < self.end_point:
                 if sum(self.det_model_pred) >= self.threshold:
-                    if self.switch_point == None:
+                    self.num_clusters += 1
+                    self.det_model_pred = []
+                    if self.num_clusters >= self.cluster_threshold:
+                        self.switch_point.append(self.num_moves)
+                        if self.active_GTP != self.GNU_subprocess:
 
-                        self.active_GTP = self.GNU_subprocess
-                        self.inactive_GTP = self.kata_subprocess
-                    
-                        self.switch_point = self.num_moves
-                        print('switched to gnu')
+                            self.active_GTP = self.GNU_subprocess
+                            self.inactive_GTP = self.kata_subprocess
+                        
+                            print('switched to gnu')
 
         next_move = self.active_GTP.gen_move(prev_move)
 
@@ -114,17 +121,18 @@ class Defended_Model():
         return(self.kata_subprocess.get_sgf())
     
     def get_board(self):
-        return(self.active_GTP.get_board())
+        return(self.kata_model.get_board())
     
     '''
     ---description---
     Resets important variables and should be called whenever a game ends.
-    '''
+    ''' 
     def end_game(self):
-        with open('src/go_attack/Experiment_Results/defended-switch-points.txt','a' ) as f:
+        with open('Results/switch-point.txt','a' ) as f:
             f.write(str(self.switch_point) + ",")
 
-        self.switch_point = None
+        self.switch_point = []
+        self.num_clusters = 0
 
         self.num_moves = 0
         self.active_GTP = self.kata_subprocess

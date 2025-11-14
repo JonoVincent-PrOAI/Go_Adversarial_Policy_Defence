@@ -26,7 +26,7 @@ class Kata_Adv_GTP_Subprocess():
         self.showboard_size = 26
 
     def gen_move(self, prev_move = None):
-
+        
         if self.kata_GTP == None:
             self.kata_GTP = Popen(self.full_command, stdout=PIPE, stdin=PIPE, stderr=PIPE)
             # for i in range(0,8):

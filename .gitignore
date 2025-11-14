@@ -110,5 +110,9 @@ controllers/gogui-1.5.1/gogui*.exe
 # For macOS
 .DS_Store
 
+# Ignore Expermient Results
+
 detection_dataset/
 models/
+src/go_defence/Results
+src/adv_detection/detection_model_eval

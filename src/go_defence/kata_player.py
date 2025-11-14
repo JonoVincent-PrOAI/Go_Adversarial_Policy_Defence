@@ -28,11 +28,11 @@ class Kata_Player():
 
 
     def play_move(self, move, colour):
-
-        self.sgf = self.sgf + self.convert_move_sgf_format(move,colour)
-        move = move.decode('utf-8')
-        move = self.parse_coord(move, self.game_state.board)
-        self.game_state.play(colour, move)
+        if move != None:
+            self.sgf = self.sgf + self.convert_move_sgf_format(move,colour)
+            move = move.decode('utf-8')
+            move = self.parse_coord(move, self.game_state.board)
+            self.game_state.play(colour, move)
 
     def parse_coord(self, move, board):
 
@@ -68,7 +68,6 @@ class Kata_Player():
         elif move in resign_moves:
             sgf_move = colour +'[Resign];'
         else:
-            print('Move: ' + move)
             coord = (self.colstr.index(move[0].upper()), 19 - int(move[1:]) )
             sgf_move = colour+ '[' + self.sgf_colstr[coord[0]] + self.sgf_colstr[coord[1]] +'];'
         
